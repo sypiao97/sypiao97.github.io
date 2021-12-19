@@ -27,16 +27,16 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="TCP &amp; UDP 总结运输层的多路复用与多路分解将运输层报文段中的数据交付到正确的socket的工作被称作多路分解。 从源主机从不同socket收集数据块，对每个数据块封装上首部信息生成报文段，并将报文段传输至网络层的过程被称作多路复用。    源端口号 目标端口号    其他首部字段    报文内容    UDP为调用UDP的程序提供了一种不可靠，无连接的服务。 适合使用UDP的情况：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-blog.csdn.net/20170602104259106?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWR5YW5nMTEyNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-blog.csdn.net/20170415163139241?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcTEwMDc3Mjk5OTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.mamicode.com%2Finfo%2F201806%2F20180606232931817940.png&refer=http%3A%2F%2Fimage.mamicode.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642518343&t=6342278ec8b7381eb33f18f0350b8818">
+<meta property="og:image" content="http://img0.baidu.com/it/u=25542314,2067662520&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=650&h=456">
 <meta property="og:image" content="https://cooffeeli-blog.oss-cn-beijing.aliyuncs.com/TCP/established.png">
 <meta property="og:image" content="https://cooffeeli-blog.oss-cn-beijing.aliyuncs.com/TCP/close.png">
 <meta property="article:published_time" content="2021-12-19T13:25:00.000Z">
-<meta property="article:modified_time" content="2021-12-19T14:43:08.645Z">
+<meta property="article:modified_time" content="2021-12-19T15:08:39.357Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="网络协议">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdn.net/20170602104259106?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWR5YW5nMTEyNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.mamicode.com%2Finfo%2F201806%2F20180606232931817940.png&refer=http%3A%2F%2Fimage.mamicode.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642518343&t=6342278ec8b7381eb33f18f0350b8818">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
@@ -464,13 +464,13 @@ height:50vh;
 <h4 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h4><p>解决了超时周期可能过长的问题。发送端发1，2，3，4，5， 接收端收到1，3，4，5，在收到3，4，5时接收端重发三次ACK 2，发送端收到3个冗余的ack2 启动快速重传机制，重发2。这样，发送端就无需等到超时即可重传。</p>
 <h3 id="TCP的拥塞控制"><a href="#TCP的拥塞控制" class="headerlink" title="TCP的拥塞控制"></a>TCP的拥塞控制</h3><p>为了防止发送端使接收端发生缓存溢出的机制（UDP不提供拥塞控制）</p>
 <p>发送方会维护一个接收窗口的变量提供流量控制（TCP是全双工，因此两端都有接收窗口），如果发送方发现接收方缓存已满，则停止发送，开启倒计时，倒计时结束后发送试探报文，随后恢复正常。</p>
-<p><img src="https://img-blog.csdn.net/20170602104259106?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWR5YW5nMTEyNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="TCP3wayhandshake"></p>
+<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.mamicode.com%2Finfo%2F201806%2F20180606232931817940.png&refer=http%3A%2F%2Fimage.mamicode.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642518343&t=6342278ec8b7381eb33f18f0350b8818" alt="TCPcongest"></p>
 <h4 id="慢启动"><a href="#慢启动" class="headerlink" title="慢启动"></a>慢启动</h4><p>慢启动：<br>最初的TCP在连接建立成功后会向网络中发送大量的数据包，这样很容易导致网络中路由器缓存空间耗尽，从而发生拥塞。因此新建立的连接不能够一开始就大量发送数据包，而只能根据网络情况逐步增加每次发送的数据量，以避免上述现象的发生。具体来说，当新建连接时，cwnd初始化为1个最大报文段(MSS)大小，发送端开始按照拥塞窗口大小发送数据，每当有一个报文段被确认，cwnd就增加1个MSS大小。这样cwnd的值就随着网络往返时间(Round Trip Time,RTT)呈指数级增长。</p>
 <h4 id="拥塞避免"><a href="#拥塞避免" class="headerlink" title="拥塞避免"></a>拥塞避免</h4><p>从慢启动可以看到，cwnd可以很快的增长上来，从而最大程度利用网络带宽资源，但是cwnd不能一直这样无限增长下去，一定需要某个限制。TCP使用了一个叫慢启动门限(ssthresh)的变量，当cwnd超过该值后，慢启动过程结束，进入拥塞避免阶段。对于大多数TCP实现来说，ssthresh的值是65536(同样以字节计算)。拥塞避免的主要思想是加法增大，也就是cwnd的值不再指数级往上升，开始加法增加。此时当窗口中所有的报文段都被确认时，cwnd的大小加1，cwnd的值就随着RTT开始线性增加，这样就可以避免增长过快导致网络拥塞，慢慢的增加调整到网络的最佳值。</p>
 <p>当出现超时时，结束线性增长。将ssthresh变为cwnd的一半，然后cwnd变为1。</p>
 <h4 id="快速恢复"><a href="#快速恢复" class="headerlink" title="快速恢复"></a>快速恢复</h4><p>发生在三个冗余ack后，每收到一个冗余ack，cwnd增加1；ssthresh和cwnd变为cwnd的一半；当丢失的报文到达后，进入拥塞控制阶段（每次增加1）</p>
 <p>下图为有快速恢复和无快速恢复的对比，无快速恢复时，一旦丢包cwnd就从1开始重新增加。</p>
-<p><img src="https://img-blog.csdn.net/20170415163139241?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcTEwMDc3Mjk5OTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="TCP3wayhandshake"></p>
+<p><img src="http://img0.baidu.com/it/u=25542314,2067662520&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=650&h=456" alt="TCPcongest1"></p>
 <h3 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h3><p><img src="https://cooffeeli-blog.oss-cn-beijing.aliyuncs.com/TCP/established.png" alt="TCP3wayhandshake"></p>
 <ol>
 <li>发送端发syn</li>
