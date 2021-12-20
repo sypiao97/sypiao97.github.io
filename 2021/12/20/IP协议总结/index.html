@@ -20,17 +20,25 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/12/index.html">
+    <meta name="description" content="IP协议总结转发与路由选择 转发：指的是分组在单一的路由器的一条输入链路中，由路由器将该分组移动到合适的输出链路。 路由选择： 在一个网络特定范围内，决定分组从源到目的地应采用的端对端路径的决策过程。 时间通常更长  转发表存储于路由器内部，根据分组首部决定向哪个端口进行输出。 IP协议IPv4 version 4bits: 帮助路由器理解如何解释数据报的剩余部分，ipv4 or ipv6 hea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IP协议总结">
+<meta property="og:url" content="http://example.com/2021/12/20/IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="IP协议总结转发与路由选择 转发：指的是分组在单一的路由器的一条输入链路中，由路由器将该分组移动到合适的输出链路。 路由选择： 在一个网络特定范围内，决定分组从源到目的地应采用的端对端路径的决策过程。 时间通常更长  转发表存储于路由器内部，根据分组首部决定向哪个端口进行输出。 IP协议IPv4 version 4bits: 帮助路由器理解如何解释数据报的剩余部分，ipv4 or ipv6 hea">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://download.huawei.com/mdl/image/download?uuid=2d73ff94bb0843d79efd3bf434e0a027">
+<meta property="og:image" content="https://p3.itc.cn/images01/20210526/d5e9c681d9a24d38b09cf53b3ef5b0e0.jpeg">
+<meta property="article:published_time" content="2021-12-20T06:36:00.000Z">
+<meta property="article:modified_time" content="2021-12-20T06:39:58.202Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="网络协议">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://download.huawei.com/mdl/image/download?uuid=2d73ff94bb0843d79efd3bf434e0a027">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
-    <title>pEko&#39;s Studio</title>
+    <title>IP协议总结 · pEko&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -211,12 +219,23 @@
 <meta name="generator" content="Hexo 5.4.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >海港</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">IP协议总结</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>海港</a>
 </header>
@@ -228,24 +247,69 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/share-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            IP协议总结
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">801</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2021/12/20</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -346,194 +410,114 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/12/20/IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/" >
-            
-                <span>IP协议总结</span>
-        </a>
-        <div class="abstract-content">
-            IP协议总结转发与路由选择
-转发：指的是分组在单一的路由器的一条输入链路中，由路由器将该分组移动到合适的输出链路。
-路由选择： 在一个网络特定范围内，决定分组从源到目的地应采用的端对端路径的决策过程。 时间通常更长
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="IP协议总结"><a href="#IP协议总结" class="headerlink" title="IP协议总结"></a>IP协议总结</h1><h2 id="转发与路由选择"><a href="#转发与路由选择" class="headerlink" title="转发与路由选择"></a>转发与路由选择</h2><ol>
+<li>转发：指的是分组在单一的路由器的一条输入链路中，由路由器将该分组移动到合适的输出链路。</li>
+<li>路由选择： 在一个网络特定范围内，决定分组从源到目的地应采用的端对端路径的决策过程。 时间通常更长</li>
+</ol>
+<h3 id="转发表"><a href="#转发表" class="headerlink" title="转发表"></a>转发表</h3><p>存储于路由器内部，根据分组首部决定向哪个端口进行输出。</p>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h3 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h3><p><img src="https://download.huawei.com/mdl/image/download?uuid=2d73ff94bb0843d79efd3bf434e0a027" alt="123"></p>
+<p>version 4bits:</p>
+<p>帮助路由器理解如何解释数据报的剩余部分，ipv4 or ipv6</p>
+<p>headerlength：</p>
+<p>标注首部的长度，因为ip报文提供一些可选项（Options），因此首部的长度可以帮助路由定位数据开始的地方。大多数IP包不包含可选项，因此大多数IP包的首部长度为20（一行为4，5行）</p>
+<p>Type of Service:</p>
+<p>区分这个报文所属的服务类型，e.g. ip电话，ftp等</p>
+<p>数据报长度：</p>
+<p>单位为byte，表示这个ip包的大小（首部+数据总和）</p>
+<p>标识</p>
+<p>标志</p>
+<p>offset</p>
+<p>TTL:</p>
+<p>ip包在网络中存活的时间，每经过一个路由器处理，ttl减一</p>
+<p>checksum：</p>
+<p>只计算首部，确保首部没有差错。如果路由器计算的checksum与实际不一致，则丢弃这个包。</p>
+<p>源和目标IP地址：</p>
+<p>包的来源和目标ip，很好理解。</p>
+<h4 id="IPv4分片"><a href="#IPv4分片" class="headerlink" title="IPv4分片"></a>IPv4分片</h4><p>为了将一个较大的ip包拆分为多个小于mtu（最大传送单元，通常为1500byte）的ip包，需要分片。分片的重新组装在端而不是路由器进行。</p>
+<h4 id="ipv4-地址"><a href="#ipv4-地址" class="headerlink" title="ipv4 地址"></a>ipv4 地址</h4><p>32bits，8个bits一个点，binary表示</p>
+<p>如192.32.216.9 表示为 11000001 00100000 11011000 00001001</p>
+<h4 id="子网，子网掩码"><a href="#子网，子网掩码" class="headerlink" title="子网，子网掩码"></a>子网，子网掩码</h4><p>223.1.1.0/24 </p>
+<p>/24代表了这个子网掩码为ip地址二进制表示的前24位。相同子网必定来自于某一个路由器的相同端口</p>
+<h4 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h4><p>DHCP是一个局域网的网络协议。指的是由服务器控制一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。无需配置，即插即用，且能确保某一主机每次接入同一网络时获取相同的IP地址。</p>
+<p>DHCP的配置分为以下4步：</p>
+<ol>
+<li>DHCP发现，客户机向67端口进行广播。</li>
+<li>DHCP服务器提供：同样进行广播（因为有可能有多个dhcp服务器），告知自身ip，推荐分配的ip，掩码，租用期等信息。</li>
+<li>客户机发送dhcp请求，客户机广播自己希望获得的ip。</li>
+<li>DHCP ack，验证并同意客户机的请求。</li>
+</ol>
+<h3 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h3><p>由于32位ipv4地址即将耗尽，引入了新的ipv6，将源和目标地址的长度延长至128bits</p>
+<p><img src="https://p3.itc.cn/images01/20210526/d5e9c681d9a24d38b09cf53b3ef5b0e0.jpeg" alt="ipv6"></p>
+<p>版本：</p>
+<p>同ipv4</p>
+<p>流量类型：</p>
+<p>同ipv4</p>
+<p>流标签：</p>
+<p>表示数据包的流，可根据需要，对某些流给出优先权或用于区分数据流</p>
+<p>载荷长度：</p>
+<p>表示在首部之后的字节数量（数据长度）。</p>
+<p>跳限制：</p>
+<p>类似ipv4的ttl</p>
+<p><strong>删除的部分有</strong></p>
+<ol>
+<li>分片，重新组装</li>
+<li>checksum：由上级协议进行即可，没必要</li>
+<li>选项</li>
+</ol>
 
-转发表存储于路由器内部，根据分组首部决定向哪个端口进行输出。
-IP协议IPv4
-version 4bits:
-帮助路由器理解如何解释数据报的剩余部分，ipv4 or ipv6
-headerlength：
-标注首部的长度，因为ip报文提供一些可选项（Options），因此首部的长度可以帮助路由定位数据开始的地方。大多数IP包不包含可选项，因此大多数IP包的首部长度为20（一行...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
-    
-</div>
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/12/19/TCP-UDP-%E6%80%BB%E7%BB%93/" >
-            
-                <span>TCP &amp; UDP 总结</span>
-        </a>
-        <div class="abstract-content">
-            TCP &amp; UDP 总结运输层的多路复用与多路分解将运输层报文段中的数据交付到正确的socket的工作被称作多路分解。
-从源主机从不同socket收集数据块，对每个数据块封装上首部信息生成报文段，并将报文段传输至网络层的过程被称作多路复用。
-
-
-
-源端口号
-目标端口号
-
-
-
-其他首部字段
-
-
-
-报文内容
-
-
-
-UDP为调用UDP的程序提供了一种不可靠，无连接的服务。
-适合使用UDP的情况：（典型的：多媒体传输）
-
-对于及时性有较高需求的应用
-不需要连接建立的情况（UDP不会引入时延）
-无连接状态 （能够支持更多的活跃用户）
-udp有较小的首部开销
-
-
-
-
-源端口号
-目标端口号
-
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/12/18/%E5%BF%AB%E6%8E%92%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/" >
-            
-                <span>快排算法的实现</span>
-        </a>
-        <div class="abstract-content">
-            快排算法快排算法本质上是一种分治法，相较于快速排序，快排减少了比较和换位的次数，从而达到了较高的运行速度。其大体思路如下
-
-假设我们对数组arr进行快速排序。
-首先在这个序列中随机选一个基准数。
-将基准数换到此轮递归的最左侧
-先从右向左遍历数组，若找到比基准数小的数停止
-再从左向右遍历数组，若找到比基准数大的数停止
-交换左右指针所指向的数，重复4，5指导左右指针重合
-这样指针的左边全部都是小于基准数的数，指针右边全部都是大于基准数的数
-把基准数与指针所指向的数字换位
-对此时指针的左边和右边分别进行递归换位
-
-Java代码实现
-1234567891011121314151617181920...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Java">Java</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Algorithm">Algorithm</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/12/18/BIO,%20NIO,%20AIO(NIO%202)%20%E6%80%BB%E7%BB%93/" >
-            
-                <span>BIO, NIO, AIO(NIO 2) 总结</span>
-        </a>
-        <div class="abstract-content">
-            
-BIO, NIO, AIO(NIO 2) 总结阻塞/非阻塞描述客户端行为
-
-阻塞： client 提出请求后，等待得到回应才能进行下一个行为
-非阻塞： client提出请求后可以进行其他行为
-
-同步/异步描述服务器行为
-
-同步： server 接受一个请求后，返回结果之前不能接受其他请求
-异步： server 在接受一个请求后， 尽管没有返回结果，server依然可以接受其他请求。
-
-BIO (Blocking I/O)同步阻塞IO模式，也是最传统的io方式。
-123456graph LRc0[Client 0] --&gt;Acceptor[Acceptor]Acceptor --&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Java">Java</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2021/12/19/TCP-UDP-%E6%80%BB%E7%BB%93/" title= "TCP & UDP 总结">
+                    <div class="prevTitle">TCP & UDP 总结</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "ia8pYT8jF1uHP1R2UKWhq438-gzGzoHsz",
+        appKey: "OJcQM8cIwn1gm5JWgHprfIrn",
+        placeholder: "",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -604,6 +588,24 @@ BIO (Blocking I/O)同步阻塞IO模式，也是最传统的io方式。
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">IP协议总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E5%8F%91%E4%B8%8E%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9"><span class="toc-number">1.1.</span> <span class="toc-text">转发与路由选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E5%8F%91%E8%A1%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">转发表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.</span> <span class="toc-text">IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4"><span class="toc-number">1.2.1.</span> <span class="toc-text">IPv4</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv4%E5%88%86%E7%89%87"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">IPv4分片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ipv4-%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">ipv4 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%EF%BC%8C%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">子网，子网掩码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DHCP"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">DHCP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv6"><span class="toc-number">1.2.2.</span> <span class="toc-text">IPv6</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -803,6 +805,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
