@@ -20,21 +20,24 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="这里是一些关于我的信息">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://example.com/about/index.html">
+    <meta name="description" content="HTTP与HTTPSHTTP与HTTPS简要区别   HTTP HTTPS    明文传输 SSL&#x2F;TLS加密   无需证书 需要申请证书   响应速度块 响应速度慢   端口80 端口443   HTTP大致流程 发起TCP连接，三次握手 client端发起http请求 server端给出http相应 2，3可能重复若干次 三次tcp挥手，结束连接  HTTPS大致流程 首先客户端通过URL访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP与HTTPS">
+<meta property="og:url" content="http://example.com/2021/12/21/HTTP%E4%B8%8EHTTPS/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这里是一些关于我的信息">
+<meta property="og:description" content="HTTP与HTTPSHTTP与HTTPS简要区别   HTTP HTTPS    明文传输 SSL&#x2F;TLS加密   无需证书 需要申请证书   响应速度块 响应速度慢   端口80 端口443   HTTP大致流程 发起TCP连接，三次握手 client端发起http请求 server端给出http相应 2，3可能重复若干次 三次tcp挥手，结束连接  HTTPS大致流程 首先客户端通过URL访问">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-05T08:45:06.906Z">
-<meta property="article:modified_time" content="2021-04-05T08:45:06.906Z">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1612195694-ROTKiX-%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%92%8C%E7%9F%AD%E8%BF%9E%E6%8E%A5.png">
+<meta property="article:published_time" content="2021-12-21T10:09:00.000Z">
+<meta property="article:modified_time" content="2021-12-21T10:10:05.667Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="网络协议">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/1612195694-ROTKiX-%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%92%8C%E7%9F%AD%E8%BF%9E%E6%8E%A5.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
-    <title>关于我 · pEko&#39;s Studio</title>
+    <title>HTTP与HTTPS · pEko&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -215,7 +218,7 @@
 <meta name="generator" content="Hexo 5.4.0"></head>
 
     
-        <body class="about-body">
+        <body class="post-body">
     
     
 <header class="header">
@@ -223,6 +226,15 @@
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >海港</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">HTTP与HTTPS</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>海港</a>
 </header>
@@ -241,6 +253,7 @@ height:50vh;
     <!-- 主页  -->
     
     
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-img" style="background-image: url(/intro/share-bg.jpg)"></div>
@@ -249,15 +262,53 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            关于我
+            HTTP与HTTPS
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">553</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2021/12/21</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -358,12 +409,110 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
-<main class="main about-page">
+            <main class="main post-page">
     <article class="article-entry">
-        <p>这里是一些关于我的信息</p>
+        <h1 id="HTTP与HTTPS"><a href="#HTTP与HTTPS" class="headerlink" title="HTTP与HTTPS"></a>HTTP与HTTPS</h1><h2 id="HTTP与HTTPS简要区别"><a href="#HTTP与HTTPS简要区别" class="headerlink" title="HTTP与HTTPS简要区别"></a>HTTP与HTTPS简要区别</h2><table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th>HTTPS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>明文传输</td>
+<td>SSL/TLS加密</td>
+</tr>
+<tr>
+<td>无需证书</td>
+<td>需要申请证书</td>
+</tr>
+<tr>
+<td>响应速度块</td>
+<td>响应速度慢</td>
+</tr>
+<tr>
+<td>端口80</td>
+<td>端口443</td>
+</tr>
+</tbody></table>
+<h2 id="HTTP大致流程"><a href="#HTTP大致流程" class="headerlink" title="HTTP大致流程"></a>HTTP大致流程</h2><ol>
+<li>发起TCP连接，三次握手</li>
+<li>client端发起http请求</li>
+<li>server端给出http相应</li>
+<li>2，3可能重复若干次</li>
+<li>三次tcp挥手，结束连接</li>
+</ol>
+<h2 id="HTTPS大致流程"><a href="#HTTPS大致流程" class="headerlink" title="HTTPS大致流程"></a>HTTPS大致流程</h2><ol>
+<li>首先客户端通过URL访问服务器建立SSL连接。告知服务器协议版本号，支持的加密方法。</li>
+<li>服务端收到客户端请求后，会将网站支持的证书信息（证书中包含公钥）传送一份给客户端。</li>
+<li>客户端用公钥确认证书有效，用公钥加密一个随机数发给服务器端。</li>
+<li>服务器端根据公钥，获取收到的随机数。根据加密协议并生成对话密钥。</li>
+</ol>
+<p><strong>SSL协议提供的服务主要有：</strong></p>
+<p>　　1）认证用户和服务器，确保数据发送到正确的客户机和服务器；</p>
+<p>　　2）加密数据以防止数据中途被窃取；</p>
+<p>　　3）维护数据的完整性，确保数据在传输过程中不被改变。</p>
+<h2 id="HTTP-keep-alive和非keep-alive"><a href="#HTTP-keep-alive和非keep-alive" class="headerlink" title="HTTP keep alive和非keep-alive"></a>HTTP keep alive和非keep-alive</h2><p><img src="https://pic.leetcode-cn.com/1612195694-ROTKiX-%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%92%8C%E7%9F%AD%E8%BF%9E%E6%8E%A5.png" alt="ka"></p>
+<h2 id="Get-Post区别"><a href="#Get-Post区别" class="headerlink" title="Get Post区别"></a>Get Post区别</h2><ul>
+<li>get 提交的数据会放在 URL 之后，并且请求参数会被完整的保留在浏览器的记录里，由于参数直接暴露在 URL 中，可能会存在安全问题，因此往往用于获取资源信息。而 post 参数放在请求主体中，并且参数不会被保留，相比 get 方法，post 方法更安全，主要用于修改服务器上的资源。</li>
+<li>get 请求只支持 URL 编码，post 请求支持多种编码格式。</li>
+<li>get 只支持 ASCII 字符格式的参数，而 post 方法没有限制。</li>
+<li>get 提交的数据大小有限制（这里所说的限制是针对浏览器而言的），而 post 方法提交的数据没限制</li>
+<li>get 方式需要使用 Request.QueryString 来取得变量的值，而 post 方式通过 Request.Form 来获取。</li>
+<li>get 方法产生一个 TCP 数据包，post 方法产生两个（并不是所有的浏览器中都产生两个）。</li>
+</ul>
 
     </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2021/12/21/GC%E7%9B%B8%E5%85%B3/" title= "GC相关">
+                    <div class="prevTitle">GC相关</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "ia8pYT8jF1uHP1R2UKWhq438-gzGzoHsz",
+        appKey: "OJcQM8cIwn1gm5JWgHprfIrn",
+        placeholder: "",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -434,6 +583,24 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E4%B8%8EHTTPS"><span class="toc-number">1.</span> <span class="toc-text">HTTP与HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E4%B8%8EHTTPS%E7%AE%80%E8%A6%81%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP与HTTPS简要区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E5%A4%A7%E8%87%B4%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP大致流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS%E5%A4%A7%E8%87%B4%E6%B5%81%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">HTTPS大致流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-keep-alive%E5%92%8C%E9%9D%9Ekeep-alive"><span class="toc-number">1.4.</span> <span class="toc-text">HTTP keep alive和非keep-alive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post%E5%8C%BA%E5%88%AB"><span class="toc-number">1.5.</span> <span class="toc-text">Get Post区别</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -665,6 +832,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

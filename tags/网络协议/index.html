@@ -354,6 +354,69 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2021/12/21/HTTP%E4%B8%8EHTTPS/" >
+            
+                <span>HTTP与HTTPS</span>
+        </a>
+        <div class="abstract-content">
+            HTTP与HTTPSHTTP与HTTPS简要区别
+
+
+HTTP
+HTTPS
+
+
+
+明文传输
+SSL/TLS加密
+
+
+无需证书
+需要申请证书
+
+
+响应速度块
+响应速度慢
+
+
+端口80
+端口443
+
+
+HTTP大致流程
+发起TCP连接，三次握手
+client端发起http请求
+server端给出http相应
+2，3可能重复若干次
+三次tcp挥手，结束连接
+
+HTTPS大致流程
+首先客户端通过URL访问服务器建立SSL连接。告知服务器协议版本号，支持的加密方法。
+服务端收到客户端请求后，会将网站支持的证书信息（证书中包含公钥）传送一份给客户端。
+客户端用公钥确认证书有效，用公钥加密一个随机数发...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2021/12/20/IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/" >
             
                 <span>IP协议总结</span>
@@ -588,9 +651,31 @@ udp有较小的首部开销
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -603,6 +688,16 @@ udp有较小的首部开销
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/2021/12/21/GC%E7%9B%B8%E5%85%B3/" >GC相关</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/2021/12/21/HTTP%E4%B8%8EHTTPS/" >HTTP与HTTPS</a>
+        </li>
     
     
         <li class="archive-post-item">

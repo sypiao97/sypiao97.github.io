@@ -20,22 +20,24 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="BIO, NIO, AIO(NIO 2) 总结阻塞&#x2F;非阻塞描述客户端行为  阻塞： client 提出请求后，等待得到回应才能进行下一个行为 非阻塞： client提出请求后可以进行其他行为  同步&#x2F;异步描述服务器行为  同步： server 接受一个请求后，返回结果之前不能接受其他请求 异步： server 在接受一个请求后， 尽管没有返回结果，server依然可以接受其他请求。  BIO (">
+    <meta name="description" content="垃圾回收器(GC)Java 常用的垃圾回收器Serial GC最古老的垃圾收集器，“Serial”体现在其收集工作是单线程的，并且在进行垃圾收集过程中，会进入臭名昭著的“Stop-The-World”状态。当然，其单线程设计也意味着精简的 GC 实现，无需维护复杂的数据结构，初始化也简单，所以一直是 Client 模式下 JVM 的默认选项。从年代的角度，通常将其老年代实现单独称作 Serial">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BIO, NIO, AIO(NIO 2) 总结">
-<meta property="og:url" content="http://example.com/2021/12/18/BIO,%20NIO,%20AIO(NIO%202)%20%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="GC相关">
+<meta property="og:url" content="http://example.com/2021/12/21/GC%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="BIO, NIO, AIO(NIO 2) 总结阻塞&#x2F;非阻塞描述客户端行为  阻塞： client 提出请求后，等待得到回应才能进行下一个行为 非阻塞： client提出请求后可以进行其他行为  同步&#x2F;异步描述服务器行为  同步： server 接受一个请求后，返回结果之前不能接受其他请求 异步： server 在接受一个请求后， 尽管没有返回结果，server依然可以接受其他请求。  BIO (">
+<meta property="og:description" content="垃圾回收器(GC)Java 常用的垃圾回收器Serial GC最古老的垃圾收集器，“Serial”体现在其收集工作是单线程的，并且在进行垃圾收集过程中，会进入臭名昭著的“Stop-The-World”状态。当然，其单线程设计也意味着精简的 GC 实现，无需维护复杂的数据结构，初始化也简单，所以一直是 Client 模式下 JVM 的默认选项。从年代的角度，通常将其老年代实现单独称作 Serial">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-12-18T09:47:00.000Z">
-<meta property="article:modified_time" content="2021-12-18T09:56:00.731Z">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-8f53daa08c42d162352d0208df5c80f0_1440w.jpg">
+<meta property="article:published_time" content="2021-12-21T10:08:00.000Z">
+<meta property="article:modified_time" content="2021-12-21T10:08:55.581Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-8f53daa08c42d162352d0208df5c80f0_1440w.jpg">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
-    <title>BIO, NIO, AIO(NIO 2) 总结 · pEko&#39;s Studio</title>
+    <title>GC相关 · pEko&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -230,7 +232,7 @@
                 <a href="/" >海港</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">BIO, NIO, AIO(NIO 2) 总结</a>
+                <a href="#" class="post-name">GC相关</a>
             </div>
     </div>
     
@@ -260,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            BIO, NIO, AIO(NIO 2) 总结
+            GC相关
             <!-- 404 -->
             
         </h1>
@@ -285,12 +287,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">726</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">2.6k</span>Reading time: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2021/12/18</span>
+                    <span class="post-intro-time">2021/12/21</span>
                     
                     <span class="shareWrapper">
                         <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -409,41 +411,69 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <hr>
-<h1 id="BIO-NIO-AIO-NIO-2-总结"><a href="#BIO-NIO-AIO-NIO-2-总结" class="headerlink" title="BIO, NIO, AIO(NIO 2) 总结"></a>BIO, NIO, AIO(NIO 2) 总结</h1><h2 id="阻塞-非阻塞"><a href="#阻塞-非阻塞" class="headerlink" title="阻塞/非阻塞"></a>阻塞/非阻塞</h2><p>描述客户端行为</p>
+        <h1 id="垃圾回收器-GC"><a href="#垃圾回收器-GC" class="headerlink" title="垃圾回收器(GC)"></a>垃圾回收器(GC)</h1><h2 id="Java-常用的垃圾回收器"><a href="#Java-常用的垃圾回收器" class="headerlink" title="Java 常用的垃圾回收器"></a>Java 常用的垃圾回收器</h2><h3 id="Serial-GC"><a href="#Serial-GC" class="headerlink" title="Serial GC"></a>Serial GC</h3><p>最古老的垃圾收集器，“Serial”体现在其收集工作是单线程的，并且在进行垃圾收集过程中，会进入臭名昭著的“Stop-The-World”状态。当然，其单线程设计也意味着精简的 GC 实现，无需维护复杂的数据结构，初始化也简单，所以一直是 Client 模式下 JVM 的默认选项。从年代的角度，通常将其老年代实现单独称作 Serial Old，它采用了标记 - 整理（Mark-Compact）算法，区别于新生代的复制算法。Serial GC 的对应 JVM 参数是：</p>
+<p>-XX:+UseSerialGC</p>
+<h3 id="ParNew-GC"><a href="#ParNew-GC" class="headerlink" title="ParNew GC"></a>ParNew GC</h3><p>很明显是个新生代 GC 实现，它实际是 Serial GC 的多线程版本，最常见的应用场景是配合老年代的 CMS GC 工作，下面是对应参数</p>
+<p>-XX:+UseConcMarkSweepGC -XX:+UseParNewGC</p>
+<h3 id="CMS（Concurrent-Mark-Sweep）-GC"><a href="#CMS（Concurrent-Mark-Sweep）-GC" class="headerlink" title="CMS（Concurrent Mark Sweep） GC"></a>CMS（Concurrent Mark Sweep） GC</h3><p>基于标记 - 清除（Mark-Sweep）算法，设计目标是尽量减少停顿时间，这一点对于 Web 等反应时间敏感的应用非常重要，一直到今天，仍然有很多系统使用 CMS GC。但是，CMS 采用的标记 - 清除算法，存在着内存碎片化问题，所以难以避免在长时间运行等情况下发生 full GC，导致恶劣的停顿。另外，既然强调了并发（Concurrent），CMS 会占用更多 CPU 资源，并和用户线程争抢。</p>
+<h3 id="Parallel-GC"><a href="#Parallel-GC" class="headerlink" title="Parallel GC"></a>Parallel GC</h3><p>在早期 JDK 8 等版本中，它是 server 模式 JVM 的默认 GC 选择，也被称作是吞吐量优先的 GC。它的算法和 Serial GC 比较相似，尽管实现要复杂的多，其特点是新生代和老年代 GC 都是并行进行的，在常见的服务器环境中更加高效。开启选项是：</p>
+<p>-XX:+UseParallelGC</p>
+<h3 id="G1-GC"><a href="#G1-GC" class="headerlink" title="G1 GC"></a>G1 GC</h3><p>这是一种兼顾吞吐量和停顿时间的 GC 实现，是 Oracle JDK 9 以后的默认 GC 选项。G1 可以直观的设定停顿时间的目标，相比于 CMS GC，G1 未必能做到 CMS 在最好情况下的延时停顿，但是最差情况要好很多。G1 GC 仍然存在着年代的概念，但是其内存结构并不是简单的条带式划分，而是类似棋盘的一个个 region。Region 之间是复制算法，但整体上实际可看作是标记 - 整理（Mark-Compact）算法，可以有效地避免内存碎片，尤其是当 Java 堆非常大的时候，G1 的优势更加明显。G1 吞吐量和停顿表现都非常不错，并且仍然在不断地完善，与此同时 CMS 已经在 JDK 9 中被标记为废弃（deprecated），所以 G1 GC 值得你深入掌握。</p>
+<h2 id="GC原理与基础概念"><a href="#GC原理与基础概念" class="headerlink" title="GC原理与基础概念"></a>GC原理与基础概念</h2><p>GC主要收集在堆里的对象实例，以及在方法区中的元数据信息，倘若这些信息不再被使用，就应该被GC回收。</p>
+<p>GC的对象实例的收集思路</p>
 <ol>
-<li>阻塞： client 提出请求后，等待得到回应才能进行下一个行为</li>
-<li>非阻塞： client提出请求后可以进行其他行为</li>
+<li>引用技术算法，就是为对象添加一个引用计数，用于记录对象被引用的情况，如果计数为 0，即表示对象可回收。这是很多语言的资源回收选择，例如因人工智能而更加火热的 Python，它更是同时支持引用计数和垃圾收集机制。具体哪种最优是要看场景的，业界有大规模实践中仅保留引用计数机制，以提高吞吐量的尝试。Java 并没有选择引用计数，是因为其存在一个基本的难题，也就是很难处理循环引用关系。</li>
+<li>可达性分析，Java 的各种引用关系，在某种程度上，将可达性问题还进一步复杂化，具体请参考专栏第 4 讲，这种类型的垃圾收集通常叫作追踪性垃圾收集（Tracing Garbage Collection）。其原理简单来说，就是将对象及其引用关系看作一个图，选定活动的对象作为 GC Roots，然后跟踪引用链条，如果一个对象和 GC Roots 之间不可达，也就是不存在引用链条，那么即可认为是可回收对象。JVM 会把虚拟机栈和本地方法栈中正在引用的对象、静态属性引用的对象和常量，作为 GC Roots。</li>
 </ol>
-<h2 id="同步-异步"><a href="#同步-异步" class="headerlink" title="同步/异步"></a>同步/异步</h2><p>描述服务器行为</p>
+<p>引用分析算法的缺点：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyObject object1 = <span class="keyword">new</span> MyObject();</span><br><span class="line">        MyObject object2 = <span class="keyword">new</span> MyObject();</span><br><span class="line"> </span><br><span class="line">        object1.object = object2;</span><br><span class="line">        object2.object = object1;</span><br><span class="line"> </span><br><span class="line">        object1 = <span class="keyword">null</span>;</span><br><span class="line">        object2 = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObject</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Object object = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后面两句将object1和object2赋值为null，也就是说object1和object2指向的对象已经不可能再被访问，但是由于它们互相引用对方，导致它们的引用计数都不为0，那么垃圾收集器就永远不会回收它们。</p>
+<p>可达性分析：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-8f53daa08c42d162352d0208df5c80f0_1440w.jpg"></p>
+<p>即使objD的计数不为1，仍然会被GC回收，因为由GC roots不能达到objD</p>
+<p>GC roots所包含的对象:</p>
 <ol>
-<li>同步： server 接受一个请求后，返回结果之前不能接受其他请求</li>
-<li>异步： server 在接受一个请求后， 尽管没有返回结果，server依然可以接受其他请求。</li>
+<li>虚拟机栈(栈帧中的本地变量表)中引用的对象。(可以理解为:引用栈帧中的本地变量表的所有对象)</li>
+<li>方法区中静态属性引用的对象(可以理解为:引用方法区该静态属性的所有对象)</li>
+<li>方法区中常量引用的对象(可以理解为:引用方法区中常量的所有对象)</li>
+<li>本地方法栈中(Native方法)引用的对象(可以理解为:引用Native方法的所有对象)</li>
+<li>所有被<strong>同步锁</strong> (synchronized 关键字) 持有的对象引用</li>
 </ol>
-<h2 id="BIO-Blocking-I-O"><a href="#BIO-Blocking-I-O" class="headerlink" title="BIO (Blocking I/O)"></a>BIO (Blocking I/O)</h2><p>同步阻塞IO模式，也是最传统的io方式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">c0[Client 0] --&gt;Acceptor[Acceptor]</span><br><span class="line">Acceptor --&gt; t0[Thread 0]</span><br><span class="line">c1[client 1] --&gt; Acceptor</span><br><span class="line">Acceptor --&gt; t1[Thread 1]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>通常使用一个独立的Acceptor线程不断监听客户端的链接</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socket.accept();</span><br><span class="line">socket.read();</span><br><span class="line">socket.write();</span><br></pre></td></tr></table></figure>
-
-<p>由于涉及的这三个函数都是同步阻塞的，因此BIO模型也是同步阻塞模型，在处理完一个client的请求后才能进行下一步操作。</p>
-<p>因此如果希望使BIO通信模型能够处理多个客户端的请求，就必须使用多线程。</p>
-<h2 id="伪异步IO"><a href="#伪异步IO" class="headerlink" title="伪异步IO"></a>伪异步IO</h2><p>为了解决同步阻塞模型的线程处理问题， 当有新的客户端介入时，将客户端的socket封装为task，丢到后端的线程池中进行处理。由于使用了线程池，它的资源是占用是可控的，因此无论有多少个客户端，都不会导致资源的耗尽。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">c0[Client 0] --&gt;Acceptor[Acceptor]</span><br><span class="line">Task --&gt; TP(Thread Pool)</span><br><span class="line">c1[client 1] --&gt; Acceptor</span><br><span class="line">Acceptor --&gt; Task</span><br><span class="line">TP --&gt;|return back| clients</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="NIO-New-I-O-Non-blocking-I-O"><a href="#NIO-New-I-O-Non-blocking-I-O" class="headerlink" title="NIO (New I/O, Non-blocking I/O)"></a>NIO (New I/O, Non-blocking I/O)</h2><p>同步非阻塞模型， 提供了Channel, Selector, Buffer等抽象类，这三者也是NIO模型的核心。NIO解决了多线程BIO线程切换代价昂贵的缺点。</p>
-<h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><p>如果说IO是面向流的模型，则NIO是面向缓冲区的模型。</p>
-<p>BIO中，所有的数据都是直接在Stream中读写的（BIO有buffer包装类，但是依然是从stream读取到buffer）</p>
-<p>NIO中， 所有数据都是由Buffer处理，数据直接写入到缓冲区，读取也是从缓冲区中进行读取</p>
-<h3 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h3><p>为了对Buffer进行读写，我们会使用Channel类，Channel既可以从Buffer 中读取数据，也可以向buffer中写入数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">Channel1 --&gt; Buffer1</span><br><span class="line">Buffer1 --&gt; Channel1</span><br><span class="line"></span><br><span class="line">Channel2 --&gt; Buffer2</span><br><span class="line">Buffer2 --&gt; Channel2</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="Selectors"><a href="#Selectors" class="headerlink" title="Selectors"></a>Selectors</h3><p>选择器用于使用单个线程处理来自多个通道的数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">Thread --&gt; Selector</span><br><span class="line">Selector --&gt; Channel1</span><br><span class="line">Selector --&gt; Channel2</span><br><span class="line">Channel1 --&gt; Buffer1</span><br><span class="line">Channel2 --&gt; Buffer2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="NIO缺陷"><a href="#NIO缺陷" class="headerlink" title="NIO缺陷"></a>NIO缺陷</h3><p>自行实现的NIO很容易出现各种bug，维护成本高</p>
-<p>NIO底层有epoll实现，空轮询会导致cpu的高占用</p>
-<h2 id="AIO-异步-I-O"><a href="#AIO-异步-I-O" class="headerlink" title="AIO (异步 I/O)"></a>AIO (异步 I/O)</h2><p>异步非阻塞的模型。</p>
-<p>利用事件 与 回调处理Accept 和 Read 等操作。可以简单理解为，应用操作直接返回，而不会阻塞在那里，当后台处理完成，操作系统会通知相应线程进行后续工作。</p>
+<p>常见的垃圾收集算法：</p>
+<ol>
+<li>复制算法，将活着的对象复制到to区域，将对象顺序放置，可以避免内存碎片化。代价是需要提前预留内存空间，有一定的浪费，二是由于是复制，需要维护对象之间的引用关系，需要额外的时间开销。</li>
+<li>标记-清除算法（Mark-Sweep）算法，首先进行标记，标记出需要清除的对象，随后清除。代价是会导致内存的碎片化，导致不适合较大的堆。</li>
+<li>标记-整理（Mark-Compact）类似标记清除算法，但是会在清理过程中将对象移动，确保对象占用连续的内存空间。</li>
+</ol>
+<p>垃圾收集的过程：</p>
+<ol>
+<li>java不断创建新的对象，这些对象被分配到eden区域。当eden区域的内存占用达到阈值后，触发minor GC。仍然被引用的对象被移动到survivor区域，其余对象被GC回收。</li>
+<li>经过一次Minor GC后，eden会空闲下来，直到在此达到minor gc的触发条件。此时，另一个survivor会变成to区域，将from（也就是第一个survivor）和eden区域的对象复制到to区域，存活年限计数会被增加1.</li>
+<li>第二步将会发生很多次，直到有对象的年限达到阈值，这时候就会发生promotion，将超过阈值的对象晋升到老年代。这个阈值是可以通过参数指定：</li>
+</ol>
+<p>-XX:MaxTenuringThreshold=</p>
+<p>老年代的GC会根据GC的类型，选择不同的GC算法（e.g. 复制算法, 标记-整理…）</p>
+<h1 id="GC调优思路"><a href="#GC调优思路" class="headerlink" title="GC调优思路"></a>GC调优思路</h1><p>GC调优通常关注于以下三个方面：</p>
+<p>内存占用(footprint), 延时(latency), 吞吐量(throughtput)</p>
+<ul>
+<li>理解应用需求和问题，确定调优目标。假设，我们开发了一个应用服务，但发现偶尔会出现性能抖动，出现较长的服务停顿。评估用户可接受的响应时间和业务量，将目标简化为，希望 GC 暂停尽量控制在 200ms 以内，并且保证一定标准的吞吐量。</li>
+<li>掌握 JVM 和 GC 的状态，定位具体的问题，确定真的有 GC 调优的必要。具体有很多方法，比如，通过 jstat 等工具查看 GC 等相关状态，可以开启 GC 日志，或者是利用操作系统提供的诊断工具等。例如，通过追踪 GC 日志，就可以查找是不是 GC 在特定时间发生了长时间的暂停，进而导致了应用响应不及时。</li>
+<li>这里需要思考，选择的 GC 类型是否符合我们的应用特征，如果是，具体问题表现在哪里，是 Minor GC 过长，还是 Mixed GC 等出现异常停顿情况；如果不是，考虑切换到什么类型，如 CMS 和 G1 都是更侧重于低延迟的 GC 选项。</li>
+<li>通过分析确定具体调整的参数或者软硬件配置。</li>
+<li>验证是否达到调优目标，如果达到目标，即可以考虑结束调优；否则，重复完成分析、调整、验证这个过程。</li>
+</ul>
+<h2 id="G1-GC-1"><a href="#G1-GC-1" class="headerlink" title="G1 GC:"></a>G1 GC:</h2><p>G1的内存分布为棋盘式设计，jvm会尽可能划分2048个从1m-32m的2的幂级数。这会导致空间的浪费，特别大的对象可能占用超过一个region，过小的对象可能需要连续的region存储。这可以通过设置较大的region大小来进行。</p>
+<p>G1的GC算法使用的是复合算法，可以理解为再新生代，使用并行的复制算法，同样会发生Stop-The-World暂停。</p>
+<blockquote>
+<p>在新生代进行的GC叫做minor GC，在老年代进行的GC都叫major GC，Full GC同时作用于新生代和老年代。在垃圾回收过程中经常涉及到对对象的挪动（比如上文提到的对象在Survivor 0和Survivor 1之间的复制），进而导致需要对对象引用进行更新。为了保证引用更新的正确性，Java将暂停所有其他的线程，这种情况被称为“Stop-The-World”，导致系统全局停顿。Stop-The-World对系统性能存在影响，因此垃圾回收的一个原则是尽量减少“Stop-The-World”的时间。</p>
+</blockquote>
+<p>老年代，大部分情况是并发标记，整理过程则是和新生代GC捎带进行，并不是整体性的管理。</p>
+<h2 id="g1-gc的简要思路"><a href="#g1-gc的简要思路" class="headerlink" title="g1 gc的简要思路"></a>g1 gc的简要思路</h2><ol>
+<li>首先通过printgcdetail 查看fullgc (收集整个堆的引用信息，包括新生代，元空间和老年代)的频率以及时长。</li>
+<li>通过dump 查看内存中哪些对象多，这些可能是引起fullgc的原因，看是否能优化。</li>
+<li>如果堆大或者是生产环境，可以开起jmc 飞行一段时间，查看这期间的相关数据来订位问题。</li>
+</ol>
 
     </article>
     <!-- license  -->
@@ -453,16 +483,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2021/12/18/%E5%BF%AB%E6%8E%92%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/" title= "快排算法的实现">
-                    <div class="nextTitle">快排算法的实现</div>
+                <a href= "/2021/12/21/HTTP%E4%B8%8EHTTPS/" title= "HTTP与HTTPS">
+                    <div class="nextTitle">HTTP与HTTPS</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2021/05/29/NAS%E7%94%A8SSD%E8%BF%9B%E8%A1%8C%E9%99%8D%E5%99%AA/" title= "NAS用SSD进行降噪">
-                    <div class="prevTitle">NAS用SSD进行降噪</div>
+                <a href= "/2021/12/20/IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/" title= "IP协议总结">
+                    <div class="prevTitle">IP协议总结</div>
                 </a>
             
         </li>
@@ -587,7 +617,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BIO-NIO-AIO-NIO-2-%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">BIO, NIO, AIO(NIO 2) 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E-%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="toc-number">1.1.</span> <span class="toc-text">阻塞&#x2F;非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5-%E5%BC%82%E6%AD%A5"><span class="toc-number">1.2.</span> <span class="toc-text">同步&#x2F;异步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BIO-Blocking-I-O"><span class="toc-number">1.3.</span> <span class="toc-text">BIO (Blocking I&#x2F;O)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E5%BC%82%E6%AD%A5IO"><span class="toc-number">1.4.</span> <span class="toc-text">伪异步IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO-New-I-O-Non-blocking-I-O"><span class="toc-number">1.5.</span> <span class="toc-text">NIO (New I&#x2F;O, Non-blocking I&#x2F;O)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Buffer"><span class="toc-number">1.5.1.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Channel"><span class="toc-number">1.5.2.</span> <span class="toc-text">Channel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Selectors"><span class="toc-number">1.5.3.</span> <span class="toc-text">Selectors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NIO%E7%BC%BA%E9%99%B7"><span class="toc-number">1.5.4.</span> <span class="toc-text">NIO缺陷</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AIO-%E5%BC%82%E6%AD%A5-I-O"><span class="toc-number">1.6.</span> <span class="toc-text">AIO (异步 I&#x2F;O)</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8-GC"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收器(GC)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Java 常用的垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial-GC"><span class="toc-number">1.1.1.</span> <span class="toc-text">Serial GC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParNew-GC"><span class="toc-number">1.1.2.</span> <span class="toc-text">ParNew GC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS%EF%BC%88Concurrent-Mark-Sweep%EF%BC%89-GC"><span class="toc-number">1.1.3.</span> <span class="toc-text">CMS（Concurrent Mark Sweep） GC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-GC"><span class="toc-number">1.1.4.</span> <span class="toc-text">Parallel GC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G1-GC"><span class="toc-number">1.1.5.</span> <span class="toc-text">G1 GC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC%E5%8E%9F%E7%90%86%E4%B8%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">GC原理与基础概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GC%E8%B0%83%E4%BC%98%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text">GC调优思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#G1-GC-1"><span class="toc-number">2.1.</span> <span class="toc-text">G1 GC:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#g1-gc%E7%9A%84%E7%AE%80%E8%A6%81%E6%80%9D%E8%B7%AF"><span class="toc-number">2.2.</span> <span class="toc-text">g1 gc的简要思路</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
